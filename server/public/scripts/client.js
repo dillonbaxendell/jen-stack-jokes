@@ -16,7 +16,30 @@ function onReady() {
 
 function addJoke() {
     console.log( 'clicked Add Joke!' );
-    
+
+    //gather input values via a new object (ajax will be happy it's an object)
+    let newJoke = {
+        whoseJoke: $( '#whoseJokeIn' ).val(),
+        jokeQuestion: $( '#questionIn' ).val(),
+        punchLine: $( '#punchLineIn' ).val()
+    }
+
+    //we need to add this newJoke to the existing jokes array on client side
+    //push into jokes
+    //Make a POST request with newJoke as the 'data:' (remember: data should always be an object)
+    $.ajax({
+        url: '/jokes',
+        method: 'POST',
+        //with POST requests we need a third variable called 'data:'
+        data: newJoke //this becomes req.body on the server side
+    }).then(response => {
+        console.log(response)
+
+        getJokes();
+    }).catch(function (error) {
+        console.log(error)
+        alert('Something went wrong with POST, try again.')
+    })
 }
 
 
