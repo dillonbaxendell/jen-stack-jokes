@@ -40,6 +40,19 @@ app.use(express.static('server/public'));
 
 //API
 
+//grab the POST via /jokes to add to the jokes array
+app.post( '/jokes', (req, res) => {
+  //add the incoming joke to our jokes array
+  //reminder: this is info coming from our Client
+  console.log(req.body); //this is the data: from ajax
+
+  //push what we received (req.body) into the array
+  jokes.push(req.body);
+
+  //send back a good response
+  res.sendStatus(201);
+});
+
 //Reminder: GET is for getting existing data
 //GET the jokes array to the Client so we can eventually append it to the DOM
 app.get( '/jokes', (req, res) => {

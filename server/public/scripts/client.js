@@ -21,7 +21,7 @@ function addJoke() {
     let newJoke = {
         whoseJoke: $( '#whoseJokeIn' ).val(),
         jokeQuestion: $( '#questionIn' ).val(),
-        punchLine: $( '#punchLineIn' ).val()
+        punchLine: $( '#punchlineIn' ).val()
     }
 
     //we need to add this newJoke to the existing jokes array on client side
@@ -62,9 +62,11 @@ function getJokes() {
         //Now append the jokes to the DOM
         for (let joke of response) {
             $( '#outputDiv' ).append(`
+            <li>
                 <b>${joke.whoseJoke}'s Joke:</b>
-                <p>${joke.jokeQuestion}</p>
+                <p><em>${joke.jokeQuestion}</em></p>
                 <p>Punchline: ${joke.punchLine}</p>
+            </li>
             `)
         }
     })
