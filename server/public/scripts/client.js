@@ -4,6 +4,9 @@ $( document ).ready( onReady );
 
 function onReady() {
     console.log('DOM ready');
+
+    //get the Jokes to the DOM
+    getJokes();
 }
 
 
@@ -18,5 +21,18 @@ function getJokes() {
         url: '/jokes'
     }).then(function (response) {
         console.log(response);
+
+        //We also need to append this info to the DOM, but first:
+        //empty the DOM
+        $( '#outputDiv' ).empty();
+
+        //Now append the jokes to the DOM
+        for (let joke of response) {
+            $( '#outputDiv' ).append(`
+                <b>${joke.whoseJoke}'s Joke:</b>
+                <p>${joke.jokeQuestion}</p>
+                <p>Punchline: ${joke.punchLine}</p>
+            `)
+        }
     })
 }
