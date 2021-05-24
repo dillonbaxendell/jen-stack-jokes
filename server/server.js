@@ -37,6 +37,20 @@ let jokes = [
 // serve back static files
 app.use(express.static('server/public'));
 
+
+//API
+
+//Reminder: GET is for getting existing data
+//GET the jokes array to the Client so we can eventually append it to the DOM
+app.get( '/jokes', (req, res) => {
+  console.log( 'got to /jokes' );
+
+  //respond
+  //whatever is in res.send is what response is on client.js file
+  res.send( jokes );
+
+})
+
 app.listen(PORT, () => {
   console.log('server running on: ', PORT);
 }); // end spin up server
