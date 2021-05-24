@@ -6,7 +6,6 @@ function onReady() {
     console.log('DOM ready');
 
     //Click Listeners
-
     //add a Joke upon hitting the 'Add Joke' button
     $( '#addJokeButton').on( 'click', addJoke );
 
@@ -62,11 +61,11 @@ function getJokes() {
         //Now append the jokes to the DOM
         for (let joke of response) {
             $( '#outputDiv' ).append(`
-            <li>
+            <div id="joke">
                 <b>${joke.whoseJoke}'s Joke:</b>
                 <p><em>${joke.jokeQuestion}</em></p>
                 <p>Punchline: ${joke.punchLine}</p>
-            </li>
+            </div>
             `)
         }
     })
